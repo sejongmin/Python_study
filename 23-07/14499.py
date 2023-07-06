@@ -7,7 +7,7 @@ dx = [0, 1, -1, 0, 0]
 dy = [0, 0, 0, -1, 1]
 answer = []
 
-N, M, x, y, K = map(int, read().split())
+N, M, y, x, K = map(int, read().split())
 
 for _ in range(N):
     line = list(map(int, read().split()))
