@@ -19,14 +19,15 @@ while q:
     if graph[y][x] == 0:
         graph[y][x] = 2
         answer += 1
-    for i in range(dir, dir - 4, -1):
+    for i in range(dir - 1, dir - 5, -1):
         nx, ny = x + dx[(i + 4) % 4], y + dy[(i + 4) % 4]
         if nx < 0 or nx >= M or ny < 0 or ny >= N or graph[ny][nx] != 0:
             continue
         q.append((nx, ny))
         dir = (i + 4) % 4
         break
-    if x == nx and x == ny:
+
+    if len(q) == 0:
         nx, ny = x + dx[(dir + 2) % 4], y + dy[(dir + 2) % 4]
         if nx < 0 or nx >= M or ny < 0 or ny >= N or graph[ny][nx] == 1:
             break
