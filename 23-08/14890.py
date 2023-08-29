@@ -50,8 +50,6 @@ def findPath():
         if flag:
             answer += 1
 
-    print(answer)
-    
     flag = True
     for j in range(N):
         flag = True
@@ -66,12 +64,19 @@ def findPath():
                 else:
                     before += 1
             elif graph[i][j] + 1 == graph[i + 1][j]:
-                if before + after >= L - 1: 
-                    before = 0
-                    after = 0
+                if after:
+                    if after >= 2 * L: 
+                        before = 0
+                        after = 0
+                    else:
+                        flag = False
+                        break
                 else:
-                    flag = False
-                    break
+                    if before >= L - 1:
+                        before = 0
+                    else:
+                        flag = False
+                        break    
             elif graph[i][j] == graph[i + 1][j] + 1:
                 before = 0
                 if after: 
