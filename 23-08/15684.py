@@ -21,6 +21,7 @@ def ladder():
     return True
 
 def DFS(cnt, x, y):
+    global answer
     if answer <= cnt:
         return
     if ladder():
