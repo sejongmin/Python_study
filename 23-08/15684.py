@@ -37,10 +37,11 @@ def DFS(cnt, x, y):
             k = 0
         for j in range(k, N - 1):
             if graph[i][j] == False and graph[i][j + 1] == False:
-                if j > 0 and graph[i][j - 1] == False:
-                    graph[i][j] = True
-                    DFS(cnt + 1, i, j + 2)
-                    graph[i][j] = False
+                if j > 0 and graph[i][j - 1] == True:
+                    continue
+                graph[i][j] = True
+                DFS(cnt + 1, i, j + 2)
+                graph[i][j] = False
 
 DFS(0, 0, 0)
-print(answer)
+print(answer if answer < 4 else -1)
