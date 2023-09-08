@@ -4,6 +4,7 @@ read = sys.stdin.readline
 q = []
 dx = [0, -1, 1, 0]
 dy = [-1, 0, 0, 1]
+pos = []
 answer = 0
 
 N = int(read().strip())
@@ -11,18 +12,19 @@ graph = []
 for i in range(N):
     line = list(map(int, read().split()))
     if 9 in line:
-        q.append([i, line.index(9), 1])
+        pos = [i, line.index(9)]
         line[line.index(9)] = 0
     graph.append(line)
 
-def BFS(q, baby):
+def BFS(baby, pos):
     global answer
     eat = 0
-    visit = [[False] * N for _ in range(N)]
-    visit[q[0][0]][q[0][1]] = True
-    candidate = []
-    distance = 0
+    q = [[pos[0], pos[1], 1]]
     while q:
+        distance = 0
+        visit = [[False] * N for _ in range(N)]
+        visit[pos[0]][pos[1]] = True
+        candidate = []
         while q:
             y, x, s = q.pop(0)
             if distance and s > distance:
@@ -45,7 +47,6 @@ def BFS(q, baby):
                 
         if distance and candidate:
             candidate.sort(key=lambda x:(x[0], x[1]))
-            print(candidate)
             ny, nx = candidate.pop(0)
             graph[ny][nx] = 0
             answer += distance
@@ -53,12 +54,9 @@ def BFS(q, baby):
             if eat == baby:
                 eat = 0
                 baby += 1
-            visit = [[False] * N for _ in range(N)]
-            visit[ny][nx] = True
-            q = [[ny, nx, 1]]
-            candidate = []
-            distance = 0
+            pos = [ny, nx]
+            q = [[pos[0], pos[1], 1]]
     return
 
-BFS(q, 2)
+BFS(2, pos)
 print(answer)
