@@ -10,7 +10,7 @@ graph = [list(map(int, read().split())) for _ in range(R)]
 for i in range(R):
     if graph[i][0] == -1:
         cleaner.append(i)
-    graph[i][0] = 0
+        graph[i][0] = 0
 
 def dust(board):
     new_board = [board[i][:] for i in range(R)]
