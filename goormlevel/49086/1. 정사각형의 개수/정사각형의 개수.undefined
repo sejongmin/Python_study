@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+user_input = input()
+N = int(user_input)
+result = 0
+
+for i in range(1, N + 1):
+	s = N - i + 1
+	result += s * s
+	
+print(result)
