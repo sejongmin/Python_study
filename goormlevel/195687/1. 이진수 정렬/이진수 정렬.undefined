@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N, K = map(int, input().strip().split())
+arr = list(map(int, input().split()))
+
+def compare(a):
+	num = a
+	cnt = 0
+	while num:
+		if num % 2 == 1:
+			cnt += 1
+		num = num // 2
+	
+	return cnt
+
+arr.sort(key=lambda x: (compare(x), x), reverse=True)
+print(arr[K - 1])
