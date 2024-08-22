@@ -1,20 +1,12 @@
 import sys
 input = sys.stdin.readline
 
+def solution(N, words):
+    words = list(set(words))
+    words.sort(key=lambda x:(len(x), x))
+    for word in words:
+        print(word)
+
 N = int(input())
-graph = []
-len_ = []
-for i in range(N):
-    graph.append(input().strip())
-    len_.append(len(graph[i]))
-
-graph = list(set(graph))
-len_ = list(set(len_))
-
-graph.sort()
-len_.sort()
-
-for i in len_:
-    for j in graph:
-        if i == len(j):
-            print(j)
+words = [input().strip() for _ in range(N)]
+solution(N, words)
