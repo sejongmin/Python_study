@@ -6,6 +6,7 @@ graph = [list(map(int, read().split())) for _ in range(N)]
 dx = [1, 0, -1, 0]
 dy = [0, 1, 0, -1]
 
+
 def openDoor():
     doors = [[[False, False, False, False] for i in range(N)] for j in range(N)]
     Flag = False
