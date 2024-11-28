@@ -16,7 +16,6 @@ def solution(board):
                     if board[ny][nx] == 1:
                         flag = False
                         break
-                
                 if flag:
                     answer += 1
                 flag = True
