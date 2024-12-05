@@ -2,18 +2,11 @@ import sys
 input = sys.stdin.readline
 
 def solution(N: int) -> None:
-    a = N // 5
-    b = N % 5 // 3
-    i = 0
-    while a >= 0 and a * 5 + b * 3 != N:
-        i += 1
-        a -= 1
-        b = (N - 5 * a) // 3
-
-    if a < 0:
-        print(-1)
-    else:
-        print(a + b)
+    cnt = 0
+    while N % 5:
+        N -= 3
+        cnt += 1
+    print(N // 5 + cnt if N >= 0 else -1)
 
 N = int(input())
 solution(N)
