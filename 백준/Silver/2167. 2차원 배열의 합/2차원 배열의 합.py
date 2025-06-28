@@ -3,23 +3,14 @@ input = sys.stdin.readline
 
 def solution(N, M, arr, K, queries):
     answer = []
-    acc = [[0] * M for _ in range(N)]
-
-    for i in range(N):
-        acc[i][0] = arr[i][0]
-        for j in range(1, M):
-            acc[i][j] = acc[i][j - 1] + arr[i][j]
+    acc = [[0] * (M + 1) for _ in range(N + 1)]
     
-    for query in queries:
-        r1, c1, r2, c2 = map(lambda x: x - 1, query)
-        s = 0
-        for i in range(r1, r2 + 1):
-            if c1 == 0:
-                s += acc[i][c2]
-            else:
-                s += acc[i][c2] - acc[i][c1 - 1]
-        
-        answer.append(s)
+    for i in range(1, N + 1):
+        for j in range(1, M + 1):
+            acc[i][j] = acc[i][j - 1] + acc[i - 1][j] - acc[i - 1][j - 1] + arr[i - 1][j - 1]
+
+    for i, j, x, y in queries:
+        answer.append(acc[x][y] - acc[x][j - 1] - acc[i - 1][y] + acc[i - 1][j - 1])
 
     print(*answer, sep='\n')
 
